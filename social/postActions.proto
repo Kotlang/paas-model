@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+import "social/commonSocial.proto";
+
+option java_multiple_files = true;
+option java_package = "com.kotlang.social";
+option java_outer_classname = "PostActionsInternal";
+
+package social;
+
+service PostActions {
+    rpc LikePost(PostIdRequest) returns (StatusResponse) {}
+    rpc UnLikePost(PostIdRequest) returns (StatusResponse) {}
+    rpc PostReply(PostReplyRequest) returns (PostReplyResponse) {}
+    rpc GetReplies(PostIdRequest) returns (PostReplies) {}
+}
+
+message PostIdRequest {
+    string postId = 1;
+}
+
+message PostReplyRequest {
+    // either postId or replyId is required.
+    //reply to an original post needs userPostId to be set
+    string userPostId = 1;
+    //reply to a reply needs userReplyId to be set
+    string userReplyId = 2;
+
+    string replyText = 3;
+}
+
+message PostReplyResponse {
+    string id = 1;
+    string userId = 2;
+    string text = 3;
+    int32 numLikes = 4;
+    int32 numReplies = 5;
+
+    //either userPostId or postReplyId will be available.
+    //reply to a post
+    string userPostId = 6;
+    //reply to a reply
+    string postReplyId = 7;
+    int64 createdOn = 8;
+}
+
+message PostReplies {
+    repeated PostReplyResponse replies = 1;
+}

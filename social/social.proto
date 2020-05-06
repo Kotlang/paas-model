@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+import "social/commonSocial.proto";
+import "auth/commonAuth.proto";
+
+option java_multiple_files = true;
+option java_package = "com.kotlang.social";
+option java_outer_classname = "SocialInternal";
+
+package social;
+
+service UserPost {
+    rpc CreatePost(UserPostRequest) returns (UserPostProto) {}
+    rpc DeletePost(DeletePostRequest) returns (StatusResponse) {}
+    rpc GetFeed(GetFeedRequest) returns (FeedResponse) {}
+    rpc GetMediaUploadUrl(MediaUploadRequest) returns (MediaUploadURL) {}
+}
+
+message UserPostRequest {
+    string post = 1;
+    repeated string tags = 2;
+    string referencePost = 3;
+    string title = 4;
+}
+
+message UserPostProto {
+    string postText = 1;
+    repeated string tags = 2;
+    string id = 3;
+    repeated string mediaUrls = 4;
+    int64 createdOn = 5;
+    string referencePost = 6;
+    string userId = 7;
+    login.UserProfileProto profileInfo = 13;
+    int32 likesCount = 8;
+    int32 repliesCount = 9;
+    int32 shareCount = 10;
+    string title = 11;
+    bool hasFeedUserLiked = 12;
+}
+
+message DeletePostRequest {
+    string id = 1;
+}
+
+message GetFeedRequest{}
+message FeedResponse{
+    repeated UserPostProto posts = 1;
+}
+
+message MediaUploadRequest {
+    // jpg or png or mp4
+    string mediaExtension = 1;
+}
+
+message MediaUploadURL {
+    string uploadUrl = 1;
+    string mediaUrl = 2;
+}

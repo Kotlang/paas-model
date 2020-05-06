@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+import "social/commonSocial.proto";
+
+option java_multiple_files = true;
+option java_package = "com.kotlang.social";
+option java_outer_classname = "TopicsInternal";
+
+package social;
+
+service Topics {
+    rpc GetTopics(GetTopicsRequest) returns (TopicsList) {}
+}
+
+message GetTopicsRequest {}
+
+message SubTopic {
+    string subTopicName = 1;
+    string imageUrl = 2;
+}
+
+message Topic {
+    string topicName = 1;
+    repeated SubTopic subTopics = 2;
+}
+
+message TopicsList {
+    repeated Topic topic = 1;
+}

@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.kotlang.auth.login";
+option java_outer_classname = "CommonInternal";
+
+package login;
+
+message AddressProto {
+    string city = 1;
+    string state = 2;
+    string country = 3;
+    string address = 4;
+}
+
+message UserProfileProto {
+    string id = 1;
+    string name = 2;
+    string photoUrl = 3;
+    string gender = 4;
+    bool isVerified = 5;
+    string domain = 6;
+    string preferredLanguage = 7;
+    int64 createdOn = 8;
+    map<string, string> metaDataMap = 9;
+    map<string, AddressProto> addresses = 10;
+}
+
+message StatusResponse {
+    string status = 1;
+}
