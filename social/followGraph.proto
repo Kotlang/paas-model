@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+import "social/commonSocial.proto";
+import "auth/commonAuth.proto";
+
+option java_multiple_files = true;
+option java_package = "com.kotlang.social";
+option java_outer_classname = "FollowGraphInternal";
+
+package social;
+
+service FollowGraph {
+    rpc FollowUser(FollowUserRequest) returns (StatusResponse) {}
+    rpc UnFollowUser(UnFollowUserRequest) returns (StatusResponse) {}
+    rpc GetFollowers(GetFollowersRequest) returns (GetFollowersResponse) {}
+}
+
+message FollowUserRequest {
+    string userId = 1;
+}
+
+message UnFollowUserRequest {
+    string userId = 1;
+}
+
+message GetFollowersRequest {
+    //userId is optional.
+    // if not provided, logged in User's followers will be returned
+    string userId = 1;
+}
+
+message GetFollowersResponse {
+    repeated login.UserProfileProto followers = 1;
+}
