@@ -14,13 +14,28 @@ service UserPost {
     rpc DeletePost(DeletePostRequest) returns (StatusResponse) {}
     rpc GetFeed(GetFeedRequest) returns (FeedResponse) {}
     rpc GetMediaUploadUrl(MediaUploadRequest) returns (MediaUploadURL) {}
+    rpc GetPost(GetPostRequest) returns (UserPostProto) {}
 }
 
 message UserPostRequest {
+    //can be markup like html containing images
+    //Question markup in case of QnA_QUESTION
+    //Answer markup in case of QnA_ANSWER
+    //Just markup in case FEED_POST
     string post = 1;
     repeated string tags = 2;
+    //in case of QnA_ANSWER use this field to refer to questionId
     string referencePost = 3;
     string title = 4;
+    //for preview etc.
+    repeated string mediaUrls = 5;
+
+    enum PostType {
+        FEED_POST = 0;
+        QnA_QUESTION = 1;
+        QnA_ANSWER = 2;
+    }
+    PostType postType = 6;
 }
 
 message UserPostProto {
@@ -37,13 +52,20 @@ message UserPostProto {
     int32 shareCount = 10;
     string title = 11;
     bool hasFeedUserLiked = 12;
+    repeated UserPostProto answersThread = 15;
 }
 
 message DeletePostRequest {
     string id = 1;
 }
 
-message GetFeedRequest{}
+message GetFeedRequest{
+    enum PostType {
+        FEED_POST = 0;
+        QnA_QUESTION = 1;
+    }
+    PostType postType = 1;
+}
 message FeedResponse{
     repeated UserPostProto posts = 1;
 }
@@ -57,3 +79,8 @@ message MediaUploadURL {
     string uploadUrl = 1;
     string mediaUrl = 2;
 }
+
+message GetPostRequest {
+    string postId = 1;
+}
+
