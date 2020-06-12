@@ -13,6 +13,7 @@ service PostActions {
     rpc UnLikePost(PostIdRequest) returns (StatusResponse) {}
     rpc PostReply(PostReplyRequest) returns (PostReplyResponse) {}
     rpc GetReplies(PostIdRequest) returns (PostReplies) {}
+    rpc Bookmark(PostIdRequest) returns (StatusResponse) {}
 }
 
 message PostIdRequest {

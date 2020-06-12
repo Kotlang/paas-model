@@ -15,6 +15,7 @@ service UserPost {
     rpc GetFeed(GetFeedRequest) returns (FeedResponse) {}
     rpc GetMediaUploadUrl(MediaUploadRequest) returns (MediaUploadURL) {}
     rpc GetPost(GetPostRequest) returns (UserPostProto) {}
+    rpc GetBookmarks(GetBookmarksRequest) returns (FeedResponse) {}
 }
 
 message UserPostRequest {
@@ -84,3 +85,4 @@ message GetPostRequest {
     string postId = 1;
 }
 
+message GetBookmarksRequest {}

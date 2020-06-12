@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+import "social/commonSocial.proto";
+import "auth/commonAuth.proto";
+
+option java_multiple_files = true;
+option java_package = "com.kotlang.social";
+option java_outer_classname = "NearbyInternal";
+
+package social;
+
+service Nearby {
+    rpc AddLocation(UserGpsLocation) returns (StatusResponse) {}
+}
+
+message UserGpsLocation {
+    double x = 1;
+    double y = 2;
+}
