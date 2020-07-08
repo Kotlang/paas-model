@@ -11,9 +11,18 @@ package social;
 
 service Nearby {
     rpc AddLocation(UserGpsLocation) returns (StatusResponse) {}
+    rpc getNearby(GetNearbyRequest) returns (GetNearbyResponse) {}
 }
 
 message UserGpsLocation {
     double x = 1;
     double y = 2;
+}
+
+message GetNearbyRequest {
+    string userId = 1;
+}
+
+message GetNearbyResponse {
+    repeated login.UserProfileProto users = 1;
 }
