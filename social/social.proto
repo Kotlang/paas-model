@@ -60,12 +60,17 @@ message DeletePostRequest {
     string id = 1;
 }
 
+message FeedFilters {
+    repeated string tags = 1;
+}
+
 message GetFeedRequest{
     enum PostType {
         FEED_POST = 0;
         QnA_QUESTION = 1;
     }
     PostType postType = 1;
+    FeedFilters filters = 2;
 }
 message FeedResponse{
     repeated UserPostProto posts = 1;
