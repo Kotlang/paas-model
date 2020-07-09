@@ -10,6 +10,8 @@ option java_outer_classname = "SocialInternal";
 package social;
 
 service UserPost {
+    //create new post or reply to a post or add answer to a post
+    //referencePost would be used to post answer or comment on a feed post
     rpc CreatePost(UserPostRequest) returns (UserPostProto) {}
     rpc DeletePost(DeletePostRequest) returns (StatusResponse) {}
     rpc GetFeed(GetFeedRequest) returns (FeedResponse) {}
@@ -26,6 +28,7 @@ message UserPostRequest {
     string post = 1;
     repeated string tags = 2;
     //in case of QnA_ANSWER use this field to refer to questionId
+    //to reply/comment on a post use original postId as referencePost
     string referencePost = 3;
     string title = 4;
     //for preview etc.
