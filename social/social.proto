@@ -18,6 +18,7 @@ service UserPost {
     rpc GetMediaUploadUrl(MediaUploadRequest) returns (MediaUploadURL) {}
     rpc GetPost(GetPostRequest) returns (UserPostProto) {}
     rpc GetBookmarks(GetBookmarksRequest) returns (FeedResponse) {}
+    rpc GetTags(GetTagsRequest) returns (TagListResponse) {}
 }
 
 message UserPostRequest {
@@ -106,4 +107,9 @@ message GetBookmarksRequest {
     //pageNumber starting from 0
     int32 pageSize = 3;
     int32 pageNumber = 4;
+}
+
+message GetTagsRequest {}
+message TagListResponse {
+    repeated string tag = 1;
 }
