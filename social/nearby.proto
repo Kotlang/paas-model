@@ -20,7 +20,10 @@ message UserGpsLocation {
 }
 
 message GetNearbyRequest {
-    string userId = 1;
+    //pagination
+    //pageNumber starting from 0
+    int32 pageSize = 3;
+    int32 pageNumber = 4;
 }
 
 message GetNearbyResponse {
