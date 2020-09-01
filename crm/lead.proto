@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.kotlang.crm.lead";
+option java_outer_classname = "LeadInternal";
+
+package crm;
+
+message LeadProto {
+  string leadName = 1;
+  string leadType = 2;
+  string pocName = 3;
+  repeated string phoneNumbers = 4;
+  string whatsAppNumber = 5;
+  string address = 6;
+  string gstNumber = 7;
+}
