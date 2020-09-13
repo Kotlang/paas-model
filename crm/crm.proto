@@ -22,6 +22,12 @@ message ProductProto {
   string grade = 3;
 }
 
+message ProductMediaUploadUrlProto {
+  string leadId = 1;
+  string productId = 2;
+  string mediaExtension = 3;
+}
+
 message LeadProductProto {
   string leadId = 1;
   string productId = 2;
