@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.kotlang.crm";
+option java_outer_classname = "ProductInternal";
+
+package crm;
+
+message ProductProto {
+  string name = 1;
+  string variety = 2;
+  string grade = 3;
+  repeated string photoUrls = 4;
+}
