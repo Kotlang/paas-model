@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.kotlang.commons";
+option java_outer_classname = "CommonsInternal";
+
+package commons;
+
+message MediaUploadURL {
+  string uploadUrl = 1;
+  string mediaUrl = 2;
+}

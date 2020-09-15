@@ -1,10 +1,22 @@
 syntax = "proto3";
 
+import "crm/commonCrm.proto";
+import "commons.proto";
+
 option java_multiple_files = true;
 option java_package = "com.kotlang.crm";
 option java_outer_classname = "LeadInternal";
 
 package crm;
+
+service LeadService {
+  //POST URL: /api/lead/create
+  rpc CreateLead(CreateLeadRequest) returns (LeadProto) {}
+  //POST URL: /api/lead/uploadPhotoUrl
+  rpc GetProductPhotoUploadUrl(ProductMediaUploadUrlProto) returns (commons.MediaUploadURL) {}
+  //POST URL: /api/lead/uploadDocumentUrl
+  rpc GetProductDocumentUploadUrl(ProductMediaUploadUrlProto) returns (commons.MediaUploadURL) {}
+}
 
 message ProductMediaUploadUrlProto {
   string leadId = 1;
@@ -12,7 +24,7 @@ message ProductMediaUploadUrlProto {
   string mediaExtension = 3;
 }
 
-message LeadProto {
+message CreateLeadRequest {
   string customerId = 1;
   string productId = 2;
   string certificationDocUrl = 3;

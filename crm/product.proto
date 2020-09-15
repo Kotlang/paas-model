@@ -1,14 +1,29 @@
 syntax = "proto3";
 
+import "crm/commonCrm.proto";
+
 option java_multiple_files = true;
 option java_package = "com.kotlang.crm";
 option java_outer_classname = "ProductInternal";
 
 package crm;
 
-message ProductProto {
+service ProductService {
+  rpc CreateProduct(CreateProductRequest) returns (ProductProto) {}
+  rpc SearchProduct(SearchProductRequest) returns (ProductProtoList) {}
+}
+
+message CreateProductRequest {
   string name = 1;
   string variety = 2;
   string grade = 3;
   repeated string photoUrls = 4;
+}
+
+message SearchProductRequest {
+  string query = 1;
+}
+
+message ProductProtoList {
+  repeated ProductProto productList = 1;
 }

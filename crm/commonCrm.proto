@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.kotlang.crm";
+option java_outer_classname = "CommonCrmInternal";
+
+package crm;
+
+message CustomerProto {
+  string name = 1;
+  string type = 2;
+  string pocName = 3;
+  repeated string phoneNumbers = 4;
+  string whatsAppNumber = 5;
+  string address = 6;
+  string gstNumber = 7;
+  string id = 8;
+}
+
+message ProductProto {
+  string name = 1;
+  string variety = 2;
+  string grade = 3;
+  repeated string photoUrls = 4;
+  string id = 5;
+}
+
+message LeadProto {
+  CustomerProto customer = 1;
+  ProductProto product = 2;
+  string certificationDocUrl = 3;
+  repeated string commodityPhotoUrls = 4;
+  double price = 5;
+  double quantity = 6;
+  string leadType = 7;
+  string id = 8;
+}

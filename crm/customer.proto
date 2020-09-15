@@ -1,12 +1,18 @@
 syntax = "proto3";
 
+import "crm/commonCrm.proto";
+
 option java_multiple_files = true;
 option java_package = "com.kotlang.crm";
 option java_outer_classname = "CustomerInternal";
 
 package crm;
 
-message CustomerProto {
+service CustomerService {
+  rpc CreateCustomer(CustomerCreateRequest) returns (CustomerProto) {}
+}
+
+message CustomerCreateRequest {
   string name = 1;
   string type = 2;
   string pocName = 3;

@@ -2,6 +2,7 @@ syntax = "proto3";
 
 import "social/commonSocial.proto";
 import "auth/commonAuth.proto";
+import "commons.proto";
 
 option java_multiple_files = true;
 option java_package = "com.kotlang.social";
@@ -15,7 +16,7 @@ service UserPost {
     rpc CreatePost(UserPostRequest) returns (UserPostProto) {}
     rpc DeletePost(DeletePostRequest) returns (StatusResponse) {}
     rpc GetFeed(GetFeedRequest) returns (FeedResponse) {}
-    rpc GetMediaUploadUrl(MediaUploadRequest) returns (MediaUploadURL) {}
+    rpc GetMediaUploadUrl(MediaUploadRequest) returns (commons.MediaUploadURL) {}
     rpc GetPost(GetPostRequest) returns (UserPostProto) {}
     rpc GetBookmarks(GetBookmarksRequest) returns (FeedResponse) {}
     rpc GetTags(GetTagsRequest) returns (TagListResponse) {}
@@ -91,11 +92,6 @@ message FeedResponse{
 message MediaUploadRequest {
     // jpg or png or mp4
     string mediaExtension = 1;
-}
-
-message MediaUploadURL {
-    string uploadUrl = 1;
-    string mediaUrl = 2;
 }
 
 message GetPostRequest {
