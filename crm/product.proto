@@ -9,6 +9,7 @@ option java_outer_classname = "ProductInternal";
 package crm;
 
 service ProductService {
+  // POST /api/product
   rpc CreateProduct(CreateProductRequest) returns (ProductProto) {}
   rpc SearchProduct(SearchProductRequest) returns (ProductProtoList) {}
 }

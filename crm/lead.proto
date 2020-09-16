@@ -16,6 +16,7 @@ service LeadService {
   rpc GetProductPhotoUploadUrl(ProductMediaUploadUrlProto) returns (commons.MediaUploadURL) {}
   //POST URL: /api/lead/uploadDocumentUrl
   rpc GetProductDocumentUploadUrl(ProductMediaUploadUrlProto) returns (commons.MediaUploadURL) {}
+  rpc GetLeadList(GetLeadListFilters) returns (LeadProtoList) {}
 }
 
 message ProductMediaUploadUrlProto {
@@ -32,4 +33,14 @@ message CreateLeadRequest {
   double price = 5;
   double quantity = 6;
   string leadType = 7;
+}
+
+message GetLeadListFilters {
+  string customerId = 1;
+  string productId = 2;
+  string leadType = 3;
+}
+
+message LeadProtoList {
+  repeated LeadProto leads = 1;
 }

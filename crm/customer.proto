@@ -9,6 +9,7 @@ option java_outer_classname = "CustomerInternal";
 package crm;
 
 service CustomerService {
+  // POST /api/customer/create
   rpc CreateCustomer(CustomerCreateRequest) returns (CustomerProto) {}
 }
 
