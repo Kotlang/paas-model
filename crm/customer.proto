@@ -11,6 +11,7 @@ package crm;
 service CustomerService {
   // POST /api/customer/create
   rpc CreateCustomer(CustomerCreateRequest) returns (CustomerProto) {}
+  rpc GetCustomers(GetCustomersRequest) returns (CustomersListProto) {}
 }
 
 message CustomerCreateRequest {
@@ -21,4 +22,9 @@ message CustomerCreateRequest {
   string whatsAppNumber = 5;
   string address = 6;
   string gstNumber = 7;
+}
+
+message GetCustomersRequest {}
+message CustomersListProto {
+  repeated CustomerProto customers = 1;
 }

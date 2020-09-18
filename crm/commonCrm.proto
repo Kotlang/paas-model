@@ -15,6 +15,7 @@ message CustomerProto {
   string address = 6;
   string gstNumber = 7;
   string id = 8;
+  int64 createdOn = 10;
 }
 
 message ProductProto {
