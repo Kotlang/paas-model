@@ -23,7 +23,10 @@ message ProductProto {
   string variety = 2;
   string grade = 3;
   repeated string photoUrls = 4;
+  int32 numBuyers = 6;
+  int32 numSellers = 7;
   string id = 5;
+  int64 createdOn = 10;
 }
 
 message LeadProto {
@@ -37,4 +40,8 @@ message LeadProto {
   string leadStatus = 9;
   string id = 8;
   int64 createdOn = 10;
+}
+
+message GetByIdRequest {
+  string id = 1;
 }

@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 import "crm/commonCrm.proto";
+import "commons.proto";
 
 option java_multiple_files = true;
 option java_package = "com.kotlang.crm";
@@ -12,6 +13,11 @@ service ProductService {
   // POST /api/product
   rpc CreateProduct(CreateProductRequest) returns (ProductProto) {}
   rpc SearchProduct(SearchProductRequest) returns (ProductProtoList) {}
+  rpc GetProducts(GetProductsRequest) returns (ProductProtoList) {}
+  rpc EditProduct(EditProductRequest) returns (ProductProto) {}
+  rpc GetProductById(GetByIdRequest) returns (ProductProto) {}
+  //POST URL: /api/product/uploadPhotoUrl
+  rpc GetProductPhotoUploadUrl(ProductPhotoUploadUrlRequest) returns (commons.MediaUploadURL) {}
 }
 
 message CreateProductRequest {
@@ -21,10 +27,22 @@ message CreateProductRequest {
   repeated string photoUrls = 4;
 }
 
+message EditProductRequest {
+  string id = 1;
+  CreateProductRequest productInfo = 2;
+}
+
 message SearchProductRequest {
   string query = 1;
 }
 
 message ProductProtoList {
   repeated ProductProto productList = 1;
+}
+
+message GetProductsRequest {}
+
+message ProductPhotoUploadUrlRequest {
+  string productId = 1;
+  string mediaExtension = 2;
 }
