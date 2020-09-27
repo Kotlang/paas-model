@@ -12,6 +12,7 @@ service Profile {
     rpc createOrUpdateProfile(CreateProfileRequest) returns (UserProfileProto) {}
     rpc getProfileById(GetProfileRequest) returns (UserProfileProto) {}
     rpc getProfileImageUploadUrl(ProfileImageUploadRequest) returns (ProfileImageUploadURL) {}
+    rpc getProfilesByAttribute(AttributeRequest) returns (AttributeResponse) {}
 }
 
 //all are optional. If any of the field is not set, old value will be retained.
@@ -21,6 +22,7 @@ message CreateProfileRequest {
     string gender = 4;
     string photoUrl = 5;
     string preferredLanguage = 7;
+    repeated string attributes = 8;
     map<string, AddressProto> addresses = 3;
     map<string, string> metaDataMap = 9;
 }
@@ -42,3 +44,10 @@ message ProfileImageUploadURL {
     string instructions = 3;
 }
 
+message AttributeRequest {
+    string attribute = 1;
+}
+
+message AttributeResponse {
+    repeated UserProfileProto profiles = 1;
+}

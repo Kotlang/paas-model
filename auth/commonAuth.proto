@@ -24,6 +24,9 @@ message UserProfileProto {
     int64 createdOn = 8;
     map<string, string> metaDataMap = 9;
     map<string, AddressProto> addresses = 10;
+    string email = 11;
+    string phone = 12;
+    repeated string attributes = 13;
 }
 
 message StatusResponse {
