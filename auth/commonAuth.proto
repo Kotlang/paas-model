@@ -3,6 +3,7 @@ syntax = "proto3";
 option java_multiple_files = true;
 option java_package = "com.kotlang.auth.login";
 option java_outer_classname = "CommonInternal";
+import "google/protobuf/struct.proto";
 
 package login;
 
@@ -22,7 +23,7 @@ message UserProfileProto {
     string domain = 6;
     string preferredLanguage = 7;
     int64 createdOn = 8;
-    map<string, string> metaDataMap = 9;
+    google.protobuf.Struct metaDataMap = 9;
     map<string, AddressProto> addresses = 10;
     string email = 11;
     string phone = 12;
