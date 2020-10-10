@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+import "quiz/commonQuiz.proto";
+
+option java_multiple_files = true;
+option java_package = "com.kotlang.quiz";
+option java_outer_classname = "ParticipationInternal";
+
+package quiz;
+
+service ContestParticipation {
+  rpc SubmitContest(SubmitContestRequest) returns (ContestParticipationDetail) {}
+  rpc getPlayedContests(PlayedContestsRequest) returns (PlayedContestsResponse) {}
+  rpc clearSubmissions(ClearSubmissionsRequest) returns (ClearSubmissionsStatus) {}
+}
+
+message SubmitContestRequest {
+  string contestId = 1;
+  repeated string answers = 2;
+}
+
+message PlayedContestsRequest {
+  //optional
+  //default userId is self taken from jwt
+  string userId = 1;
+}
+
+message ClearSubmissionsRequest {}
+
+message ClearSubmissionsStatus {
+  string status = 1;
+}
+
+message PlayedContestsResponse {
+  repeated ContestParticipationDetail playedContests = 1;
+}
