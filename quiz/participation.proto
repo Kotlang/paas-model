@@ -14,9 +14,14 @@ service ContestParticipation {
   rpc clearSubmissions(ClearSubmissionsRequest) returns (ClearSubmissionsStatus) {}
 }
 
+message QuestionResponse {
+  string questionId = 1;
+  string answer = 2;
+}
+
 message SubmitContestRequest {
   string contestId = 1;
-  repeated string answers = 2;
+  repeated QuestionResponse answers = 2;
 }
 
 message PlayedContestsRequest {
@@ -25,7 +30,9 @@ message PlayedContestsRequest {
   string userId = 1;
 }
 
-message ClearSubmissionsRequest {}
+message ClearSubmissionsRequest {
+  string contestId = 1;
+}
 
 message ClearSubmissionsStatus {
   string status = 1;
